@@ -6,7 +6,7 @@
 
     <property file="build.properties"/>
 
-    <target name="deployToAllSandboxes" description="Deploys the code to salesforce.com">
+    <target name="deployToAllSandboxes" description="Deploys package to all of the sandboxes">
         <echo message="Deploying to ${uat_username}"/>
         <sf:deploy username="${uat_username}"
                    password="${uat_password}"
@@ -26,7 +26,7 @@
                    deployRoot="src" />
     </target>
 
-    <target name="deployToProduction" description="Deploys the code to salesforce.com">
+    <target name="deployToProduction" description="Deploys packaged metadata to Production org">
         <echo message="Deploying to ${prod_username}"/>
         <sf:deploy username="${prod_username}"
                    password="${prod_password}"
@@ -34,7 +34,7 @@
                    deployRoot="src" />
     </target>
 
-    <target name="validateProduction" description="Deploys the code to salesforce.com">
+    <target name="validateProduction" description="Validates packaged metadata again Production. Does not deploy">
         <echo message="Deploying to ${prod_username}"/>
         <sf:deploy username="${prod_username}"
                    password="${prod_password}"
