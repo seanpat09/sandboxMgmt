@@ -71,7 +71,7 @@ Take this build for example:
 </Package>
 ```
 
-After running *ant retrieve*, in the profiles you'll notice the User Permissions below Field Permissions:
+After running **ant retrieve**, in the profiles you'll notice the User Permissions below Field Permissions:
 
 ```
 <userLicense>Salesforce</userLicense>
@@ -85,7 +85,7 @@ After running *ant retrieve*, in the profiles you'll notice the User Permissions
 </userPermissions>
 ```
 
-If you run into error like saying something like 'User permission ApiEnabled does not exist', then you'll need to strip the permissions out of the profile metadata.
+If while deploying you run into an error like saying something like 'User permission ApiEnabled does not exist', then you'll need to strip the permissions out of the profile metadata.
 Don't worry, this doesn't delete the metadata, it just doesn't include them in the deployment. Use this regex to find all the User Permissions and replace it with a blank.
 
 ```
