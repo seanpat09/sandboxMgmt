@@ -1,4 +1,4 @@
-When working with several sandboxes, you need an easy way to keep your sandboxes in sync without having to refresh the sandboxes. You could use change sets, but you'll need to upload **n** change sets, which can get cumbersome and slow. Use this build file to deploy metadata to several sandboxes at once.
+When working with several sandboxes, you need an easy way to keep your sandboxes in sync without having to refresh the sandboxes. You could use change sets, but you'll need to upload *n* change sets, which can get cumbersome and slow. Use this build file to deploy metadata to several sandboxes at once.
 
 
 ##How To Use
@@ -10,7 +10,7 @@ This line in the build.xml file is a reference to the file holding your credenti
 <property file="build.properties"/>
 ```
 
-This file is ignored in git because it will hold your usernames and passwords, so you'll need to create it for yourself on your machine. At the base of this repository, create a file called *build.properties*. Here's an example:
+This file is ignored in git because it will hold your usernames and passwords, so you'll need to create it for yourself on your machine. At the base of this repository, create a file called **build.properties**. Here's an example:
 
 ```
 qa_username = me@mycompany.com.qa
@@ -28,14 +28,14 @@ password = passAndToken
 endpoint = test.salesforce.com
 ```
 
-Each of these variables correspond to a merge field in the build.xml file. In the above example, when the build runs then *{$qa_username}* will be replaced with *me@mycompany.com.qa*
+Each of these variables correspond to a merge field in the build.xml file. In the above example, when the build runs then **{$qa_username}** will be replaced with **me@mycompany.com.qa**
 
-*NOTE*: As with all version control, if you accidentally commit sensitive information, immediately revert the changes and then change your password!
+**NOTE**: As with all version control, if you accidentally commit sensitive information, immediately revert the changes and then change your password!
 
 ###Build your package
-Prepare the *package.xml* file to pull down the metadata that you want.
+Prepare the **package.xml** file to pull down the metadata that you want.
 
-In the *build.properties* file add the credentials of the org you want to retrieve from so that they are used the they *retrieve* task.
+In the **build.properties** file add the credentials of the org you want to retrieve from so that they are used the they **retrieve** task.
 
 ###Description of Targets
 
@@ -45,10 +45,10 @@ To run any of these target, run *ant target* in the shell. For example:
 ant deployToAllSandboxes
 ```
 
-**deployToAllSandboxes** - Deploys to all sandboxes. Add or remove tasks from this target to adds more sandboxes. Should any deployment fail, the ones after it won't run
-**deployToProduction** - Deploys production. This will automatically run all tests.
-**validateProduction** - Validates against production. This does not deploy, but if the validation passes then you can utilize [Quick Deploy](http://releasenotes.docs.salesforce.com/en-us/spring15/release-notes/rn_quick_deployment_ga.htm)
-**retrieve** - Retrieves the metadata 
+* **deployToAllSandboxes** - Deploys to all sandboxes. Add or remove tasks from this target to adds more sandboxes. Should any deployment fail, the ones after it won't run
+* **deployToProduction** - Deploys production. This will automatically run all tests.
+* **validateProduction** - Validates against production. This does not deploy, but if the validation passes then you can utilize [Quick Deploy](http://releasenotes.docs.salesforce.com/en-us/spring15/release-notes/rn_quick_deployment_ga.htm)
+* **retrieve** - Retrieves the metadata 
 
 ##A Note About Managing Profile Permissions
 When deploying fields, you'll also want to deploy the user permissions or else you'll need to do it manually in the destination org. However,
