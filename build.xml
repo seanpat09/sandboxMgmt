@@ -1,0 +1,53 @@
+<project basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <taskdef resource="com/salesforce/antlib.xml"
+             classPath="lib/ant-salesforce.jar"
+             uri="antlib:com.salesforce"/>
+
+    <target name="deployToAllSandboxes" description="Deploys the code to salesforce.com">
+        <echo message="Deploying to ${uat_username}"/>
+        <sf:deploy username="${uat_username}"
+                   password="${uat_password}"
+                   serverurl="test.salesforce.com"
+                   deployRoot="src" />
+
+         <echo message="Deploying to ${qa_username}"/>
+         <sf:deploy username="${qa_username}"
+                   password="${qa_password}"
+                   serverurl="test.salesforce.com"
+                   deployRoot="src" />
+        
+        <echo message="Deploying to ${lease_username}"/>
+        <sf:deploy username="${lease_username}"
+                   password="${lease_password}"
+                   serverurl="test.salesforce.com"
+                   deployRoot="src" />
+    </target>
+
+    <target name="deployToProduction" description="Deploys the code to salesforce.com">
+        <echo message="Deploying to ${prod_username}"/>
+        <sf:deploy username="${prod_username}"
+                   password="${prod_password}"
+                   serverurl="login.salesforce.com"
+                   deployRoot="src" />
+    </target>
+
+    <target name="validateProduction" description="Deploys the code to salesforce.com">
+        <echo message="Deploying to ${prod_username}"/>
+        <sf:deploy username="${prod_username}"
+                   password="${prod_password}"
+                   serverurl="login.salesforce.com"
+                   deployRoot="src"
+                   checkOnly="true" />
+    </target>
+
+    <target name="retrieve">
+        <echo message="Retrieving src from ${username}"/>
+        <sf:retrieve username="${username}"
+                     password="${password}"
+                     serverurl="${endpoint}"
+                     retrieveTarget="src"
+                     unpackaged="src/package.xml"/>
+    </target>
+
+</project>
