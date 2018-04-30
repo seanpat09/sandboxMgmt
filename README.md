@@ -3,15 +3,14 @@ When working with several sandboxes, you need an easy way to keep your sandboxes
 
 ##How To Use
 
-###Add your credentails
-This line in the build.xml file is a reference to the file holding your credentials:
+###Add Credentials Using environment variables
 
+This line let's you designate how you reference your environment vars for merge fields
 ```
-<property file="build.properties"/>
+<property environment="env"/>
 ```
 
-This file is ignored in git because it will hold your usernames and passwords, so you'll need to create it for yourself on your machine. At the base of this repository, create a file called **build.properties**. Here's an example:
-
+In your environment vars:
 ```
 qa_username = me@mycompany.com.qa
 qa_password = QApassAndSecurityToken
@@ -23,19 +22,17 @@ prod_username = me@mycompany.com
 prod_password = productionPassAndSecurityToken
 
 //retrieve
-username = me@mycompany.com.mySandboxe
+username = me@mycompany.com.mySandbox
 password = passAndToken
 endpoint = test.salesforce.com
 ```
 
-Each of these variables correspond to a merge field in the build.xml file. In the above example, when the build runs then **{$qa_username}** will be replaced with **me@mycompany.com.qa**
-
-**NOTE**: As with all version control, if you accidentally commit sensitive information, immediately revert the changes and then change your password!
+Each of these variables correspond to a merge field in the build.xml file. In the above example, when the build runs then **{$env.qa_username}** will be replaced with **me@mycompany.com.qa**
 
 ###Build your package
 Prepare the **package.xml** file to pull down the metadata that you want.
 
-In the **build.properties** file add the credentials of the org you want to retrieve from so that they are used the they **retrieve** task.
+In the **build.xml** file or in your env variables add the credentials of the org you want to retrieve from so that they are used the they **retrieve** task.
 
 ###Description of Targets
 

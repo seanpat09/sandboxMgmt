@@ -4,50 +4,44 @@
              classPath="lib/ant-salesforce.jar"
              uri="antlib:com.salesforce"/>
 
-    <property file="build.properties"/>
+    <property environment="env"/>
 
     <target name="deployToAllSandboxes" description="Deploys package to all of the sandboxes">
-        <echo message="Deploying to ${uat_username}"/>
-        <sf:deploy username="${uat_username}"
-                   password="${uat_password}"
+        <echo message="Deploying to ${env.uat_username}"/>
+        <sf:deploy username="${env.uat_username}"
+                   password="${env.uat_password}"
                    serverurl="test.salesforce.com"
                    deployRoot="src" />
 
-         <echo message="Deploying to ${qa_username}"/>
-         <sf:deploy username="${qa_username}"
-                   password="${qa_password}"
-                   serverurl="test.salesforce.com"
-                   deployRoot="src" />
-        
-        <echo message="Deploying to ${lease_username}"/>
-        <sf:deploy username="${lease_username}"
-                   password="${lease_password}"
+         <echo message="Deploying to ${env.qa_username}"/>
+         <sf:deploy username="${env.qa_username}"
+                   password="${env.qa_password}"
                    serverurl="test.salesforce.com"
                    deployRoot="src" />
     </target>
 
     <target name="deployToProduction" description="Deploys packaged metadata to Production org">
-        <echo message="Deploying to ${prod_username}"/>
-        <sf:deploy username="${prod_username}"
-                   password="${prod_password}"
+        <echo message="Deploying to ${env.prod_username}"/>
+        <sf:deploy username="${env.prod_username}"
+                   password="${env.prod_password}"
                    serverurl="login.salesforce.com"
                    deployRoot="src" />
     </target>
 
     <target name="validateProduction" description="Validates packaged metadata again Production. Does not deploy">
-        <echo message="Deploying to ${prod_username}"/>
-        <sf:deploy username="${prod_username}"
-                   password="${prod_password}"
+        <echo message="Deploying to ${env.prod_username}"/>
+        <sf:deploy username="${env.prod_username}"
+                   password="${env.prod_password}"
                    serverurl="login.salesforce.com"
                    deployRoot="src"
                    checkOnly="true" />
     </target>
 
     <target name="retrieve">
-        <echo message="Retrieving src from ${username}"/>
-        <sf:retrieve username="${username}"
-                     password="${password}"
-                     serverurl="${endpoint}"
+        <echo message="Retrieving src from ${env.username}"/>
+        <sf:retrieve username="${env.username}"
+                     password="${env.password}"
+                     serverurl="${env.endpoint}"
                      retrieveTarget="src"
                      unpackaged="src/package.xml"/>
     </target>
